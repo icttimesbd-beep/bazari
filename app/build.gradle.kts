@@ -38,17 +38,24 @@ android {
     create("debugConfig") {
       val debugStore = file("${rootDir}/debug.keystore")
       if (!debugStore.exists()) {
-        val b64File = file("${rootDir}/debug.keystore.base64")
-        if (b64File.exists()) {
-          try {
-            val cleanB64 = b64File.readText().replace("\n", "").replace("\r", "").trim()
-            val decoded = Base64.getDecoder().decode(cleanB64)
-            debugStore.writeBytes(decoded)
-          } catch (_: Exception) {
+        val defaultDebugStore = file("${System.getProperty("user.home")}/.android/debug.keystore")
+        if (defaultDebugStore.exists()) {
+          storeFile = defaultDebugStore
+        } else {
+          val b64File = file("${rootDir}/debug.keystore.base64")
+          if (b64File.exists()) {
+            try {
+              val cleanB64 = b64File.readText().replace("\n", "").replace("\r", "").trim()
+              val decoded = Base64.getDecoder().decode(cleanB64)
+              debugStore.writeBytes(decoded)
+            } catch (_: Exception) {
+            }
           }
+          storeFile = debugStore
         }
+      } else {
+        storeFile = debugStore
       }
-      storeFile = debugStore
       storePassword = "android"
       keyAlias = "androiddebugkey"
       keyPassword = "android"
@@ -65,11 +72,15 @@ android {
       val releaseKeystore = file(System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks")
       if (releaseKeystore.exists() && System.getenv("STORE_PASSWORD") != null) {
         signingConfig = signingConfigs.getByName("release")
-      } else {
+      }
+    }
+    debug {
+      val localDebugStore = file("${rootDir}/debug.keystore")
+      val userDebugStore = file("${System.getProperty("user.home")}/.android/debug.keystore")
+      if (localDebugStore.exists() || userDebugStore.exists() || file("${rootDir}/debug.keystore.base64").exists()) {
         signingConfig = signingConfigs.getByName("debugConfig")
       }
     }
-    debug { signingConfig = signingConfigs.getByName("debugConfig") }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
