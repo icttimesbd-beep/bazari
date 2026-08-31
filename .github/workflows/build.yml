@@ -1,0 +1,99 @@
+name: Build Android APK & AAB
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Package APK / AAB
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Prepare Secrets & Environment
+        run: |
+          # Ensure .env file exists for Secrets Gradle plugin
+          if [ ! -f .env ]; then
+            if [ -f .env.example ]; then
+              cp .env.example .env
+            else
+              touch .env
+            fi
+          fi
+
+          # Ensure debug.keystore is decoded from base64 if needed
+          if [ ! -f debug.keystore ] && [ -f debug.keystore.base64 ]; then
+            echo "Decoding debug.keystore from debug.keystore.base64..."
+            base64 -d debug.keystore.base64 > debug.keystore || base64 --decode debug.keystore.base64 > debug.keystore || true
+          fi
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.3.1'
+
+      - name: Build Debug & Release APK and AAB
+        run: |
+          gradle :app:assembleDebug :app:assembleRelease :app:bundleRelease \
+            -x test \
+            -x lint \
+            -x lintVitalRelease \
+            --stacktrace \
+            --no-daemon
+
+      - name: Prepare Artifact Outputs
+        run: |
+          mkdir -p build-artifacts
+          
+          # Copy APKs
+          if compgen -G "app/build/outputs/apk/debug/*.apk" > /dev/null; then
+            cp app/build/outputs/apk/debug/*.apk build-artifacts/Bazari-Debug.apk
+          fi
+          if compgen -G "app/build/outputs/apk/release/*.apk" > /dev/null; then
+            cp app/build/outputs/apk/release/*.apk build-artifacts/Bazari-Release.apk
+          fi
+          
+          # Copy AAB Bundle
+          if compgen -G "app/build/outputs/bundle/release/*.aab" > /dev/null; then
+            cp app/build/outputs/bundle/release/*.aab build-artifacts/Bazari-Release.aab
+          fi
+
+          echo "Available outputs in build-artifacts:"
+          ls -la build-artifacts/
+
+      - name: Upload All Build Artifacts (APK & AAB)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bazari-Android-Builds
+          path: build-artifacts/
+          retention-days: 30
+
+      - name: Create GitHub Release (On Version Tag Push)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build-artifacts/Bazari-Release.apk
+            build-artifacts/Bazari-Debug.apk
+            build-artifacts/Bazari-Release.aab
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

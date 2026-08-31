@@ -1,0 +1,230 @@
+[
+  {
+    "id": "tpl_saptahik_bazar",
+    "titleBn": "সাপ্তাহিক বাজার",
+    "titleEn": "Weekly Household Grocery",
+    "icon": "shopping_cart",
+    "category": "PERSONAL",
+    "descriptionBn": "পরিবারের এক সপ্তাহের জন্য নিয়মিত তরিতরকারি, মাছ-মাংস ও প্রয়োজনীয় মুদি বাজার।",
+    "items": [
+      {"productId": "rice_miniket", "nameBn": "মিনিকেট চাল", "quantity": "৫", "unit": "কেজি", "defaultPrice": 72.0},
+      {"productId": "dal_masoor_desi", "nameBn": "দেশি মসুর ডাল", "quantity": "১", "unit": "কেজি", "defaultPrice": 140.0},
+      {"productId": "oil_soybean_2l", "nameBn": "সয়াবিন তেল (২ লিটার বোতল)", "quantity": "১", "unit": "বোতল", "defaultPrice": 345.0},
+      {"productId": "veg_potato_red", "nameBn": "লাল গোল আলু (দেশি)", "quantity": "২", "unit": "কেজি", "defaultPrice": 45.0},
+      {"productId": "veg_onion_desi", "nameBn": "দেশি পেঁয়াজ", "quantity": "১.৫", "unit": "কেজি", "defaultPrice": 75.0},
+      {"productId": "veg_garlic_desi", "nameBn": "দেশি রসুন", "quantity": "২৫০", "unit": "গ্রাম", "defaultPrice": 50.0},
+      {"productId": "veg_ginger_desi", "nameBn": "দেশি তাজা আদা", "quantity": "২৫০", "unit": "গ্রাম", "defaultPrice": 55.0},
+      {"productId": "veg_green_chilli", "nameBn": "কাঁচা মরিচ", "quantity": "২৫০", "unit": "গ্রাম", "defaultPrice": 30.0},
+      {"productId": "veg_tomato_red", "nameBn": "পাকা লাল টমেটো", "quantity": "১", "unit": "কেজি", "defaultPrice": 60.0},
+      {"productId": "egg_farm_red", "nameBn": "ফার্মের লাল ডিম", "quantity": "১", "unit": "ডজন", "defaultPrice": 150.0},
+      {"productId": "meat_chicken_broiler", "nameBn": "ব্রয়লার মুরগি", "quantity": "১", "unit": "কেজি", "defaultPrice": 190.0},
+      {"productId": "fish_rui_fresh_2kg", "nameBn": "তাজা রুই মাছ", "quantity": "১", "unit": "কেজি", "defaultPrice": 380.0},
+      {"productId": "veg_palong_shak", "nameBn": "পালং শাক", "quantity": "২", "unit": "আঁটি", "defaultPrice": 25.0},
+      {"productId": "veg_dhonia_pata", "nameBn": "তাজা ধনেপাতা", "quantity": "১", "unit": "আঁটি", "defaultPrice": 20.0}
+    ]
+  },
+  {
+    "id": "tpl_masik_bazar",
+    "titleBn": "মাসিক বাজার",
+    "titleEn": "Monthly Family Stock",
+    "icon": "home",
+    "category": "PERSONAL",
+    "descriptionBn": "পুরো এক মাসের চাল, ডাল, তেল, মসলা ও পরিচ্ছন্নতা পণ্যের বড় ফর্দ।",
+    "items": [
+      {"productId": "rice_miniket", "nameBn": "মিনিকেট চাল", "quantity": "২৫", "unit": "কেজি", "defaultPrice": 72.0},
+      {"productId": "rice_chinigura", "nameBn": "চিনিগুঁড়া পোলাও চাল", "quantity": "২", "unit": "কেজি", "defaultPrice": 135.0},
+      {"productId": "flour_atta_packet", "nameBn": "প্যাকেট আটা", "quantity": "৫", "unit": "কেজি", "defaultPrice": 55.0},
+      {"productId": "dal_masoor_desi", "nameBn": "দেশি মসুর ডাল", "quantity": "৩", "unit": "কেজি", "defaultPrice": 140.0},
+      {"productId": "dal_moong_desi", "nameBn": "ভাজা মুগ ডাল", "quantity": "১", "unit": "কেজি", "defaultPrice": 160.0},
+      {"productId": "dal_chana", "nameBn": "ছোলা ডাল", "quantity": "১", "unit": "কেজি", "defaultPrice": 115.0},
+      {"productId": "oil_soybean_5l", "nameBn": "সয়াবিন তেল (৫ লিটার জার)", "quantity": "১", "unit": "বোতল", "defaultPrice": 850.0},
+      {"productId": "oil_mustard_ghani", "nameBn": "ঘানির সরিষার তেল", "quantity": "১", "unit": "লিটার", "defaultPrice": 280.0},
+      {"productId": "sugar_white", "nameBn": "সাদা চিনি", "quantity": "৩", "unit": "কেজি", "defaultPrice": 130.0},
+      {"productId": "salt_iodized", "nameBn": "আয়োডিনযুক্ত লবণ", "quantity": "২", "unit": "কেজি", "defaultPrice": 40.0},
+      {"productId": "spices_turmeric_powder", "nameBn": "হলুদ গুঁড়া", "quantity": "৪০০", "unit": "গ্রাম", "defaultPrice": 170.0},
+      {"productId": "spices_chilli_powder", "nameBn": "মরিচ গুঁড়া (ঝাল)", "quantity": "৪০০", "unit": "গ্রাম", "defaultPrice": 220.0},
+      {"productId": "spices_coriander_powder", "nameBn": "ধনে গুঁড়া", "quantity": "৪০০", "unit": "গ্রাম", "defaultPrice": 150.0},
+      {"productId": "spices_cumin_powder", "nameBn": "জিরা গুঁড়া", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 260.0},
+      {"productId": "bev_tea_ispahani_mirzapore", "nameBn": "ইস্পাহানি মির্জাপুর চা পাতা", "quantity": "১", "unit": "প্যাকেট", "defaultPrice": 220.0},
+      {"productId": "milk_powder_dano_500g", "nameBn": "ডানো ফুল ক্রিম গুঁড়া দুধ", "quantity": "২", "unit": "প্যাকেট", "defaultPrice": 450.0},
+      {"productId": "clean_detergent_surf_excel", "nameBn": "সার্ফ এক্সেল ম্যাটিক ডিটারজেন্ট", "quantity": "২", "unit": "কেজি", "defaultPrice": 210.0},
+      {"productId": "clean_dishwash_vim_liquid", "nameBn": "ভিম ডিশওয়াশ লিকুইড", "quantity": "১", "unit": "বোতল", "defaultPrice": 130.0},
+      {"productId": "clean_toilet_harpic", "nameBn": "হারপিক টয়লেট ক্লিনার", "quantity": "১", "unit": "বোতল", "defaultPrice": 160.0},
+      {"productId": "pc_toothpaste_close_up", "nameBn": "ক্লোজআপ রেড হট টুথপেস্ট", "quantity": "১", "unit": "টিউব", "defaultPrice": 130.0},
+      {"productId": "pc_soap_lux", "nameBn": "লাক্স বিউটি সাবান", "quantity": "৪", "unit": "পিস", "defaultPrice": 65.0}
+    ]
+  },
+  {
+    "id": "tpl_mudi_bazar",
+    "titleBn": "মুদি বাজার",
+    "titleEn": "Pantry & Dry Grocery",
+    "icon": "kitchen",
+    "category": "PERSONAL",
+    "descriptionBn": "রান্নাঘরের নিয়মিত শুকনো মসলা, চাল, ডাল, তেল ও দরকারি উপাদান।",
+    "items": [
+      {"productId": "rice_nazirshail", "nameBn": "নাজিরশাইল চাল", "quantity": "১০", "unit": "কেজি", "defaultPrice": 80.0},
+      {"productId": "dal_masoor_desi", "nameBn": "দেশি মসুর ডাল", "quantity": "২", "unit": "কেজি", "defaultPrice": 140.0},
+      {"productId": "oil_soybean_2l", "nameBn": "সয়াবিন তেল (২ লিটার বোতল)", "quantity": "১", "unit": "বোতল", "defaultPrice": 345.0},
+      {"productId": "sugar_white", "nameBn": "সাদা চিনি", "quantity": "২", "unit": "কেজি", "defaultPrice": 130.0},
+      {"productId": "salt_iodized", "nameBn": "আয়োডিনযুক্ত লবণ", "quantity": "১", "unit": "কেজি", "defaultPrice": 40.0},
+      {"productId": "spices_turmeric_powder", "nameBn": "হলুদ গুঁড়া", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 85.0},
+      {"productId": "spices_chilli_powder", "nameBn": "মরিচ গুঁড়া", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 110.0},
+      {"productId": "spices_coriander_powder", "nameBn": "ধনে গুঁড়া", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 75.0},
+      {"productId": "spices_cumin_powder", "nameBn": "জিরা গুঁড়া", "quantity": "১০০", "unit": "গ্রাম", "defaultPrice": 130.0},
+      {"productId": "spices_garam_masala_radhuni", "nameBn": "রাঁধুনী গরম মসলা", "quantity": "১", "unit": "প্যাকেট", "defaultPrice": 60.0},
+      {"productId": "bev_tea_ispahani_mirzapore", "nameBn": "ইস্পাহানি চা পাতা", "quantity": "১", "unit": "প্যাকেট", "defaultPrice": 220.0}
+    ]
+  },
+  {
+    "id": "tpl_sobji_bazar",
+    "titleBn": "সবজি বাজার",
+    "titleEn": "Fresh Vegetables & Greens",
+    "icon": "eco",
+    "category": "PERSONAL",
+    "descriptionBn": "কাঁচাবাজারের তাজা সবজি, শাক ও সালাদ সামগ্রী।",
+    "items": [
+      {"productId": "veg_potato_red", "nameBn": "লাল গোল আলু (দেশি)", "quantity": "২", "unit": "কেজি", "defaultPrice": 45.0},
+      {"productId": "veg_onion_desi", "nameBn": "দেশি পেঁয়াজ", "quantity": "১", "unit": "কেজি", "defaultPrice": 75.0},
+      {"productId": "veg_green_chilli", "nameBn": "কাঁচা মরিচ", "quantity": "২৫০", "unit": "গ্রাম", "defaultPrice": 30.0},
+      {"productId": "veg_eggplant_gol", "nameBn": "গোল বেগুন (তাল বেগুন)", "quantity": "১", "unit": "কেজি", "defaultPrice": 70.0},
+      {"productId": "veg_bottle_gourd", "nameBn": "কচি লাউ", "quantity": "১", "unit": "পিস", "defaultPrice": 60.0},
+      {"productId": "veg_potol", "nameBn": "পটল", "quantity": "৫০০", "unit": "গ্রাম", "defaultPrice": 30.0},
+      {"productId": "veg_dherosh", "nameBn": "ঢেঁড়স (ভেন্ডি)", "quantity": "৫০০", "unit": "গ্রাম", "defaultPrice": 25.0},
+      {"productId": "veg_cucumber", "nameBn": "শসা (সালাদ)", "quantity": "১", "unit": "কেজি", "defaultPrice": 50.0},
+      {"productId": "veg_carrot", "nameBn": "গাজর", "quantity": "৫০০", "unit": "গ্রাম", "defaultPrice": 30.0},
+      {"productId": "veg_lemon_kagi", "nameBn": "কাগজি লেবু", "quantity": "১", "unit": "হালি", "defaultPrice": 30.0},
+      {"productId": "veg_dhonia_pata", "nameBn": "তাজা ধনেপাতা", "quantity": "১", "unit": "আঁটি", "defaultPrice": 20.0},
+      {"productId": "veg_lal_shak", "nameBn": "লাল শাক", "quantity": "২", "unit": "আঁটি", "defaultPrice": 20.0}
+    ]
+  },
+  {
+    "id": "tpl_mach_bazar",
+    "titleBn": "মাছের বাজার",
+    "titleEn": "Fresh Fish Market",
+    "icon": "set_meal",
+    "category": "PERSONAL",
+    "descriptionBn": "দেশি নদীর মাছ, রুই, ইলিশ ও চিংড়ির স্পেশাল বাজার ফর্দ।",
+    "items": [
+      {"productId": "fish_rui_cut_cleaned", "nameBn": "রুই মাছ (কাটা ও পরিষ্কার)", "quantity": "১.৫", "unit": "কেজি", "defaultPrice": 420.0},
+      {"productId": "fish_katla_fresh", "nameBn": "তাজা কাতলা মাছ", "quantity": "১", "unit": "কেজি", "defaultPrice": 360.0},
+      {"productId": "fish_chingri_bagda", "nameBn": "বাগদা চিংড়ি (বড়)", "quantity": "৫০০", "unit": "গ্রাম", "defaultPrice": 425.0},
+      {"productId": "fish_pabda", "nameBn": "পাবদা মাছ", "quantity": "৫০০", "unit": "গ্রাম", "defaultPrice": 225.0},
+      {"productId": "fish_ilish_padma_1kg", "nameBn": "পদ্মার ইলিশ মাছ (১ কেজি)", "quantity": "১", "unit": "পিস", "defaultPrice": 1600.0}
+    ]
+  },
+  {
+    "id": "tpl_mangsho_bazar",
+    "titleBn": "মাংসের বাজার",
+    "titleEn": "Meat & Poultry Market",
+    "icon": "kebab_dining",
+    "category": "PERSONAL",
+    "descriptionBn": "তাজা গরুর মাংস, খাসি ও সোনালী/দেশি মুরগির ফর্দ।",
+    "items": [
+      {"productId": "meat_beef_curry_cut", "nameBn": "গরুর মাংস (হাড় সহ)", "quantity": "২", "unit": "কেজি", "defaultPrice": 780.0},
+      {"productId": "meat_chicken_sonali", "nameBn": "সোনালী কক মুরগি", "quantity": "২", "unit": "কেজি", "defaultPrice": 320.0},
+      {"productId": "meat_mutton_desi", "nameBn": "খাসির মাংস", "quantity": "১", "unit": "কেজি", "defaultPrice": 1150.0}
+    ]
+  },
+  {
+    "id": "tpl_romjan_bazar",
+    "titleBn": "রমজান বাজার",
+    "titleEn": "Ramadan & Iftar Essentials",
+    "icon": "nights_stay",
+    "category": "PERSONAL",
+    "descriptionBn": "ইফতার ও সেহরির জন্য খেজুর, ছোলা, বেসন, তেল, চিড়া ও মুড়ি।",
+    "items": [
+      {"productId": "fruit_dates_khejur", "nameBn": "মদিনার বরই খেজুর", "quantity": "১", "unit": "কেজি", "defaultPrice": 400.0},
+      {"productId": "dal_chola_whole", "nameBn": "আস্ত ছোলা বুট", "quantity": "২", "unit": "কেজি", "defaultPrice": 110.0},
+      {"productId": "flour_besan", "nameBn": "বেসন (বেগুনি ও পেঁয়াজুর)", "quantity": "১.৫", "unit": "কেজি", "defaultPrice": 130.0},
+      {"productId": "oil_soybean_5l", "nameBn": "সয়াবিন তেল (৫ লিটার জার)", "quantity": "১", "unit": "বোতল", "defaultPrice": 850.0},
+      {"productId": "muri_desi", "nameBn": "হাতে ভাজা মুড়ি", "quantity": "২", "unit": "কেজি", "defaultPrice": 90.0},
+      {"productId": "chira_white", "nameBn": "সাদা চিড়া", "quantity": "১", "unit": "কেজি", "defaultPrice": 70.0},
+      {"productId": "bev_rooh_afza", "nameBn": "হামদর্দ রুহ আফজা শরবত", "quantity": "১", "unit": "বোতল", "defaultPrice": 340.0},
+      {"productId": "bev_tokma_isabgol", "nameBn": "ইসবগুলের ভুষি ও তোকমা", "quantity": "১", "unit": "প্যাকেট", "defaultPrice": 120.0},
+      {"productId": "sugar_white", "nameBn": "সাদা চিনি", "quantity": "২", "unit": "কেজি", "defaultPrice": 130.0},
+      {"productId": "veg_lemon_kagi", "nameBn": "কাগজি লেবু", "quantity": "২", "unit": "হালি", "defaultPrice": 30.0},
+      {"productId": "veg_eggplant_gol", "nameBn": "গোল বেগুন (বেগুনির)", "quantity": "১.৫", "unit": "কেজি", "defaultPrice": 70.0},
+      {"productId": "veg_onion_desi", "nameBn": "দেশি পেঁয়াজ (পেঁয়াজুর)", "quantity": "২", "unit": "কেজি", "defaultPrice": 75.0}
+    ]
+  },
+  {
+    "id": "tpl_eid_bazar",
+    "titleBn": "ঈদের বাজার",
+    "titleEn": "Eid Celebration Shopping",
+    "icon": "celebration",
+    "category": "PERSONAL",
+    "descriptionBn": "ঈদের স্পেশাল পোলাও চাল, মাংস, সেমাই, ঘি, বাদাম ও মসলা।",
+    "items": [
+      {"productId": "rice_chinigura", "nameBn": "চিনিগুঁড়া পোলাও চাল", "quantity": "৩", "unit": "কেজি", "defaultPrice": 135.0},
+      {"productId": "snack_semai_lachha", "nameBn": "ঘিয়ে ভাজা লাচ্ছা সেমাই", "quantity": "৩", "unit": "প্যাকেট", "defaultPrice": 50.0},
+      {"productId": "ghee_desi_cow", "nameBn": "গাওয়া ঘি", "quantity": "৪০০", "unit": "গ্রাম", "defaultPrice": 450.0},
+      {"productId": "milk_liquid_raw_cow", "nameBn": "খাঁটি গরুর কাঁচা দুধ", "quantity": "৩", "unit": "লিটার", "defaultPrice": 80.0},
+      {"productId": "meat_beef_curry_cut", "nameBn": "গরুর মাংস", "quantity": "৩", "unit": "কেজি", "defaultPrice": 780.0},
+      {"productId": "meat_chicken_sonali", "nameBn": "সোনালী কক মুরগি", "quantity": "২", "unit": "কেজি", "defaultPrice": 320.0},
+      {"productId": "spices_biryani_masala", "nameBn": "বিরিয়ানি মসলা প্যাকেট", "quantity": "২", "unit": "প্যাকেট", "defaultPrice": 75.0},
+      {"productId": "fruit_raisins_kismis", "nameBn": "গোল্ডেন কিশমিশ", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 120.0},
+      {"productId": "fruit_cashew_nut", "nameBn": "কাজু বাদাম", "quantity": "২০০", "unit": "গ্রাম", "defaultPrice": 240.0},
+      {"productId": "spices_cardamom_green", "nameBn": "সবুজ এলাচ", "quantity": "১০০", "unit": "গ্রাম", "defaultPrice": 320.0},
+      {"productId": "spices_cinnamon", "nameBn": "দারুচিনি", "quantity": "১০০", "unit": "গ্রাম", "defaultPrice": 120.0}
+    ]
+  },
+  {
+    "id": "tpl_mess_bazar",
+    "titleBn": "মেস / ছাত্র বাজার",
+    "titleEn": "Student & Mess Budget Grocery",
+    "icon": "school",
+    "category": "PERSONAL",
+    "descriptionBn": "ছাত্রাবাস ও ব্যাচেলর মেসের জন্য সাশ্রয়ী প্রয়োজনীয় সাপ্তাহিক বাজার।",
+    "items": [
+      {"productId": "rice_siddha", "nameBn": "সিদ্ধ চাল (মোটা)", "quantity": "১০", "unit": "কেজি", "defaultPrice": 55.0},
+      {"productId": "dal_masoor_mota", "nameBn": "মোটা মসুর ডাল", "quantity": "২", "unit": "কেজি", "defaultPrice": 105.0},
+      {"productId": "oil_soybean_2l", "nameBn": "সয়াবিন তেল (২ লিটার বোতল)", "quantity": "১", "unit": "বোতল", "defaultPrice": 345.0},
+      {"productId": "egg_farm_red", "nameBn": "ফার্মের লাল ডিম", "quantity": "২", "unit": "ডজন", "defaultPrice": 150.0},
+      {"productId": "veg_potato_red", "nameBn": "লাল গোল আলু", "quantity": "৩", "unit": "কেজি", "defaultPrice": 45.0},
+      {"productId": "veg_onion_desi", "nameBn": "দেশি পেঁয়াজ", "quantity": "২", "unit": "কেজি", "defaultPrice": 75.0},
+      {"productId": "veg_green_chilli", "nameBn": "কাঁচা মরিচ", "quantity": "২৫০", "unit": "গ্রাম", "defaultPrice": 30.0},
+      {"productId": "meat_chicken_broiler", "nameBn": "ব্রয়লার মুরগি", "quantity": "২", "unit": "কেজি", "defaultPrice": 190.0},
+      {"productId": "clean_dishwash_bar_vim", "nameBn": "ভিম ডিশওয়াশ বার", "quantity": "১", "unit": "পিস", "defaultPrice": 40.0}
+    ]
+  },
+  {
+    "id": "tpl_office_bazar",
+    "titleBn": "অফিস বাজার",
+    "titleEn": "Office Tea, Snacks & Cleaning",
+    "icon": "business_center",
+    "category": "PERSONAL",
+    "descriptionBn": "অফিস কিচেনের চা, কফি, চিনি, বিস্কুট ও পরিচ্ছন্নতা ফর্দ।",
+    "items": [
+      {"productId": "bev_tea_ispahani_mirzapore", "nameBn": "ইস্পাহানি মির্জাপুর চা পাতা", "quantity": "২", "unit": "প্যাকেট", "defaultPrice": 220.0},
+      {"productId": "bev_coffee_nescafe_classic", "nameBn": "নেসক্যাফে ক্লাসিক কফি জার", "quantity": "১", "unit": "জার", "defaultPrice": 380.0},
+      {"productId": "sugar_white", "nameBn": "সাদা চিনি", "quantity": "৩", "unit": "কেজি", "defaultPrice": 130.0},
+      {"productId": "milk_powder_dano_500g", "nameBn": "ডানো ফুল ক্রিম গুঁড়া দুধ", "quantity": "২", "unit": "প্যাকেট", "defaultPrice": 450.0},
+      {"productId": "snack_biscuit_lexus", "nameBn": "লেক্সাস ভেজিটেবল বিস্কুট", "quantity": "৫", "unit": "প্যাকেট", "defaultPrice": 50.0},
+      {"productId": "clean_tissue_box_facial", "nameBn": "ফেসিয়াল টিস্যু বক্স", "quantity": "৪", "unit": "বক্স", "defaultPrice": 75.0},
+      {"productId": "clean_toilet_harpic", "nameBn": "হারপিক টয়লেট ক্লিনার", "quantity": "১", "unit": "বোতল", "defaultPrice": 160.0},
+      {"productId": "clean_dishwash_vim_liquid", "nameBn": "ভিম ডিশওয়াশ লিকুইড", "quantity": "১", "unit": "বোতল", "defaultPrice": 130.0},
+      {"productId": "stat_a4_paper_rim", "nameBn": "এ৪ সাইজ প্রিন্টার পেপার রিম", "quantity": "২", "unit": "রিম", "defaultPrice": 360.0}
+    ]
+  },
+  {
+    "id": "tpl_dokan_stock",
+    "titleBn": "দোকানের মাল তোলার তালিকা",
+    "titleEn": "Store Restock & Wholesale Orders",
+    "icon": "store",
+    "category": "STORE",
+    "descriptionBn": "মুদি ও রিটেল দোকানের জন্য বস্তা ও কার্টনের পাইকারি রিস্টক ফর্দ।",
+    "items": [
+      {"productId": "wholesale_rice_bosta_50kg", "nameBn": "মিনিকেট চাল (৫০ কেজি বস্তা)", "quantity": "৫", "unit": "বস্তা", "defaultPrice": 3450.0},
+      {"productId": "wholesale_oil_soybean_carton", "nameBn": "সয়াবিন তেল কার্টন (৫ লিটার x ৪টি)", "quantity": "৪", "unit": "কার্টন", "defaultPrice": 3350.0},
+      {"productId": "wholesale_sugar_bosta_50kg", "nameBn": "চিনির বস্তা (৫০ কেজি)", "quantity": "২", "unit": "বস্তা", "defaultPrice": 6200.0},
+      {"productId": "wholesale_flour_bosta_50kg", "nameBn": "আটা / ময়দা ৫০ কেজি বস্তা", "quantity": "৩", "unit": "বস্তা", "defaultPrice": 2650.0},
+      {"productId": "wholesale_dal_bosta_25kg", "nameBn": "মসুর ডাল (২৫ কেজি বস্তা)", "quantity": "২", "unit": "বস্তা", "defaultPrice": 2600.0},
+      {"productId": "wholesale_biscuit_carton", "nameBn": "বিস্কুট মিক্সড কার্টন", "quantity": "৩", "unit": "কার্টন", "defaultPrice": 2400.0},
+      {"productId": "wholesale_noodles_carton", "nameBn": "নুডলস কার্টন", "quantity": "২", "unit": "কার্টন", "defaultPrice": 4100.0},
+      {"productId": "wholesale_soap_carton", "nameBn": "লাক্স / ডেটোল সাবান কার্টন", "quantity": "২", "unit": "কার্টন", "defaultPrice": 4400.0},
+      {"productId": "wholesale_detergent_sack", "nameBn": "হুইল ওয়াশিং পাউডার বস্তা", "quantity": "২", "unit": "বস্তা", "defaultPrice": 2400.0},
+      {"productId": "wholesale_onion_mesh_bag", "nameBn": "পেঁয়াজের বস্তা (৪০ কেজি)", "quantity": "২", "unit": "বস্তা", "defaultPrice": 2800.0},
+      {"productId": "wholesale_potato_sack", "nameBn": "আলুর বস্তা (৫০ কেজি)", "quantity": "৩", "unit": "বস্তা", "defaultPrice": 2100.0}
+    ]
+  }
+]

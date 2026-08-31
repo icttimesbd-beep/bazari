@@ -1,0 +1,7 @@
+{
+  "name": "বাজারি",
+  "description": "বাজার সহজ, ফর্দ আরও সহজ। Shopping made easy, lists made smarter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "categories": [
+    { "id": "rice_grains", "nameBn": "চাল ও শস্য", "nameEn": "Rice & Grains", "icon": "grain", "color": "#4CAF50" },
+    { "id": "lentils_dal", "nameBn": "ডাল ও কলাই", "nameEn": "Lentils & Dal", "icon": "grass", "color": "#8BC34A" },
+    { "id": "flour_baking", "nameBn": "আটা, ময়দা ও বেকিং", "nameEn": "Flour & Baking", "icon": "bakery_dining", "color": "#FF9800" },
+    { "id": "oil_ghee", "nameBn": "তেল ও ঘি", "nameEn": "Oil & Ghee", "icon": "oil_barrel", "color": "#FFC107" },
+    { "id": "spices_masala", "nameBn": "মসলা ও ফোড়ন", "nameEn": "Spices & Masala", "icon": "soup_kitchen", "color": "#E91E63" },
+    { "id": "vegetables", "nameBn": "শাক-সবজি", "nameEn": "Vegetables & Greens", "icon": "eco", "color": "#2E7D32" },
+    { "id": "fruits", "nameBn": "তাজা ফলমূল", "nameEn": "Fresh Fruits", "icon": "nutrition", "color": "#FF5722" },
+    { "id": "fish_seafood", "nameBn": "তাজা মাছ ও শুঁটকি", "nameEn": "Fish & Seafood", "icon": "set_meal", "color": "#00ACC1" },
+    { "id": "meat_poultry", "nameBn": "মাংস ও পোল্ট্রি", "nameEn": "Meat & Poultry", "icon": "kebab_dining", "color": "#D32F2F" },
+    { "id": "dairy_eggs", "nameBn": "ডিম ও দুগ্ধজাত পণ্য", "nameEn": "Eggs & Dairy", "icon": "egg", "color": "#F57C00" },
+    { "id": "beverages", "nameBn": "চা, কফি ও পানীয়", "nameEn": "Beverages & Drinks", "icon": "coffee", "color": "#795548" },
+    { "id": "snacks_confectionery", "nameBn": "স্ন্যাকস ও বিস্কুট", "nameEn": "Snacks & Biscuits", "icon": "cookie", "color": "#9C27B0" },
+    { "id": "bakery_bread", "nameBn": "বেকারি ও পাউরুটি", "nameEn": "Bakery & Bread", "icon": "breakfast_dining", "color": "#6D4C41" },
+    { "id": "sauces_condiments", "nameBn": "সস, জ্যাম ও আচার", "nameEn": "Sauces & Pickles", "icon": "dinner_dining", "color": "#C2185B" },
+    { "id": "baby_care", "nameBn": "শিশু খাদ্য ও যত্ন", "nameEn": "Baby Care & Food", "icon": "child_care", "color": "#00BCD4" },
+    { "id": "personal_care", "nameBn": "ব্যক্তিগত যত্ন ও প্রসাধন", "nameEn": "Personal Care", "icon": "spa", "color": "#3F51B5" },
+    { "id": "cleaning_household", "nameBn": "পরিষ্কার-পরিচ্ছন্নতা", "nameEn": "Cleaning & Household", "icon": "cleaning_services", "color": "#009688" },
+    { "id": "stationery", "nameBn": "স্টেশনারি ও অফিস", "nameEn": "Stationery & Office", "icon": "edit", "color": "#607D8B" },
+    { "id": "kitchenware", "nameBn": "রান্নাঘর ও বাসনপত্র", "nameEn": "Kitchen & Utensils", "icon": "flatware", "color": "#455A64" },
+    { "id": "electrical_hardware", "nameBn": "ইলেকট্রিক্যাল ও হার্ডওয়্যার", "nameEn": "Electrical & Hardware", "icon": "tungsten", "color": "#FF9800" },
+    { "id": "store_wholesale", "nameBn": "দোকানের পাইকারি মাল", "nameEn": "Store Restock & Wholesale", "icon": "inventory_2", "color": "#1B5E20" },
+    { "id": "age_restricted_retail", "nameBn": "অন্যান্য সাধারণ রিটেল", "nameEn": "General Retail", "icon": "category", "color": "#757575" }
+  ]
+}
