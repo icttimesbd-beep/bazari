@@ -49,9 +49,17 @@ jobs:
         with:
           gradle-version: '8.11.1'
 
+      - name: Setup Gradle Wrapper Permission
+        run: |
+          chmod +x gradlew || true
+
+      - name: Setup Android SDK & Licenses
+        run: |
+          yes | sdkmanager --licenses || true
+
       - name: Build Debug & Release APK and AAB
         run: |
-          gradle :app:assembleDebug :app:assembleRelease :app:bundleRelease \
+          ./gradlew :app:assembleDebug :app:assembleRelease :app:bundleRelease \
             -x test \
             -x lint \
             -x lintVitalRelease \
