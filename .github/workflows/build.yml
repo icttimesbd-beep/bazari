@@ -56,7 +56,7 @@ jobs:
 
       - name: Build Debug & Release APK and AAB
         run: |
-          gradle :app:assembleDebug :app:assembleRelease :app:bundleRelease \
+          ./gradlew :app:assembleDebug :app:assembleRelease :app:bundleRelease \
             -x test \
             -x lint \
             -x lintVitalRelease \
