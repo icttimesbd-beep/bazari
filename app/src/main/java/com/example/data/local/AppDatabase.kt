@@ -62,7 +62,7 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope = CoroutineScope(Dispatchers.IO)): AppDatabase {
+        fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -70,16 +70,6 @@ abstract class AppDatabase : RoomDatabase() {
                     "bazari_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .addCallback(object : Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            scope.launch {
-                                INSTANCE?.let { database ->
-                                    CatalogDataLoader(context.applicationContext).loadCatalogIfNeeded(database)
-                                }
-                            }
-                        }
-                    })
                     .build()
                 INSTANCE = instance
                 instance

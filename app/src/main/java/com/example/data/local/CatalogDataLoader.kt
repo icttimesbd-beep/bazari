@@ -1,139 +1,167 @@
 package com.example.data.local
 
 import android.content.Context
+import android.util.Log
 import com.example.data.local.entity.CategoryEntity
 import com.example.data.local.entity.ProductEntity
 import com.example.data.local.entity.TemplateEntity
 import com.example.data.local.entity.TemplateItemEntity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
 class CatalogDataLoader(private val context: Context) {
 
+    companion object {
+        private const val TAG = "CatalogDataLoader"
+        private val loadMutex = Mutex()
+    }
+
     suspend fun loadCatalogIfNeeded(database: AppDatabase, forceReload: Boolean = false) = withContext(Dispatchers.IO) {
-        val productCount = database.productDao().getProductCount()
-        if (productCount >= 5000 && !forceReload) {
-            return@withContext
-        }
-
-        try {
-            // 1. Load Categories
-            val categoriesJsonStr = context.assets.open("catalog/categories.json").bufferedReader().use { it.readText() }
-            val categoriesJsonObj = JSONObject(categoriesJsonStr)
-            val categoriesArray = categoriesJsonObj.getJSONArray("categories")
-            val categoryEntities = mutableListOf<CategoryEntity>()
-
-            for (i in 0 until categoriesArray.length()) {
-                val obj = categoriesArray.getJSONObject(i)
-                categoryEntities.add(
-                    CategoryEntity(
-                        id = obj.getString("id"),
-                        nameBn = obj.getString("nameBn"),
-                        nameEn = obj.optString("nameEn", ""),
-                        icon = obj.optString("icon", "category"),
-                        color = obj.optString("color", "#4CAF50")
-                    )
-                )
-            }
-            database.productDao().insertCategories(categoryEntities)
-
-            // 2. Load Products (Batch insertion for large catalog)
-            val productsJsonStr = context.assets.open("catalog/products.json").bufferedReader().use { it.readText() }
-            val productsArray = JSONArray(productsJsonStr)
-            val batchSize = 500
-            var currentBatch = mutableListOf<ProductEntity>()
-
-            for (i in 0 until productsArray.length()) {
-                val obj = productsArray.getJSONObject(i)
-                val aliasesBnArray = obj.optJSONArray("aliasesBn")
-                val aliasesBn = if (aliasesBnArray != null) {
-                    (0 until aliasesBnArray.length()).joinToString(",") { aliasesBnArray.getString(it) }
-                } else obj.optString("aliasesBn", "")
-
-                val aliasesEnArray = obj.optJSONArray("aliasesEn")
-                val aliasesEn = if (aliasesEnArray != null) {
-                    (0 until aliasesEnArray.length()).joinToString(",") { aliasesEnArray.getString(it) }
-                } else obj.optString("aliasesEn", "")
-
-                currentBatch.add(
-                    ProductEntity(
-                        id = obj.getString("id"),
-                        nameBn = obj.getString("nameBn"),
-                        nameEn = obj.optString("nameEn", ""),
-                        aliasesBn = aliasesBn,
-                        aliasesEn = aliasesEn,
-                        categoryId = obj.getString("categoryId"),
-                        defaultUnit = obj.optString("defaultUnit", "কেজি"),
-                        defaultPrice = obj.optDouble("defaultPrice", 0.0),
-                        isCommon = obj.optBoolean("isCommon", false),
-                        isFavorite = false,
-                        usageCount = 0,
-                        lastUsedTimestamp = 0L,
-                        isCustom = false,
-                        ageRestricted = obj.optBoolean("ageRestricted", false)
-                    )
-                )
-
-                if (currentBatch.size >= batchSize) {
-                    database.productDao().insertOrUpdateProducts(currentBatch)
-                    currentBatch = mutableListOf()
+        loadMutex.withLock {
+            try {
+                val productCount = database.productDao().getProductCount()
+                if (productCount > 0 && !forceReload) {
+                    Log.d(TAG, "Catalog already loaded ($productCount products). Skipping initial load.")
+                    return@withContext
                 }
-            }
 
-            if (currentBatch.isNotEmpty()) {
-                database.productDao().insertOrUpdateProducts(currentBatch)
-            }
+                Log.d(TAG, "Starting catalog load...")
 
-            // 3. Load Templates
-            val templatesCount = database.templateDao().getTemplateCount()
-            if (templatesCount == 0 || forceReload) {
-                val templatesJsonStr = context.assets.open("catalog/templates.json").bufferedReader().use { it.readText() }
-                val templatesArray = JSONArray(templatesJsonStr)
-                val templateEntities = mutableListOf<TemplateEntity>()
-                val templateItemEntities = mutableListOf<TemplateItemEntity>()
+                // 1. Load Categories
+                try {
+                    val categoriesJsonStr = context.assets.open("catalog/categories.json").bufferedReader().use { it.readText() }
+                    val categoriesJsonObj = JSONObject(categoriesJsonStr)
+                    val categoriesArray = categoriesJsonObj.getJSONArray("categories")
+                    val categoryEntities = mutableListOf<CategoryEntity>()
 
-                for (i in 0 until templatesArray.length()) {
-                    val obj = templatesArray.getJSONObject(i)
-                    val templateId = obj.getString("id")
-                    val template = TemplateEntity(
-                        id = templateId,
-                        titleBn = obj.getString("titleBn"),
-                        titleEn = obj.optString("titleEn", ""),
-                        icon = obj.optString("icon", "shopping_cart"),
-                        category = obj.optString("category", "PERSONAL"),
-                        descriptionBn = obj.optString("descriptionBn", ""),
-                        descriptionEn = obj.optString("descriptionEn", ""),
-                        isCustom = false
-                    )
-                    templateEntities.add(template)
-
-                    val itemsArray = obj.getJSONArray("items")
-                    for (j in 0 until itemsArray.length()) {
-                        val itemObj = itemsArray.getJSONObject(j)
-                        templateItemEntities.add(
-                            TemplateItemEntity(
-                                templateId = templateId,
-                                productId = itemObj.optString("productId", ""),
-                                nameBn = itemObj.getString("nameBn"),
-                                nameEn = itemObj.optString("nameEn", ""),
-                                quantity = itemObj.optString("quantity", "১"),
-                                unit = itemObj.optString("unit", "কেজি"),
-                                defaultPrice = itemObj.optDouble("defaultPrice", 0.0),
-                                categoryId = "rice_grains",
-                                categoryBn = "মুদি",
-                                sortOrder = j
+                    for (i in 0 until categoriesArray.length()) {
+                        val obj = categoriesArray.getJSONObject(i)
+                        categoryEntities.add(
+                            CategoryEntity(
+                                id = obj.getString("id"),
+                                nameBn = obj.getString("nameBn"),
+                                nameEn = obj.optString("nameEn", ""),
+                                icon = obj.optString("icon", "category"),
+                                color = obj.optString("color", "#4CAF50")
                             )
                         )
                     }
+                    database.productDao().insertCategories(categoryEntities)
+                    Log.d(TAG, "Loaded ${categoryEntities.size} categories.")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed loading categories from assets", e)
                 }
-                database.templateDao().insertTemplates(templateEntities)
-                database.templateDao().insertTemplateItems(templateItemEntities)
-            }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
+                // 2. Load Products (Batch insertion for large catalog)
+                try {
+                    val productsJsonStr = context.assets.open("catalog/products.json").bufferedReader().use { it.readText() }
+                    val productsArray = JSONArray(productsJsonStr)
+                    val batchSize = 500
+                    var currentBatch = mutableListOf<ProductEntity>()
+
+                    for (i in 0 until productsArray.length()) {
+                        val obj = productsArray.getJSONObject(i)
+                        val aliasesBnArray = obj.optJSONArray("aliasesBn")
+                        val aliasesBn = if (aliasesBnArray != null) {
+                            (0 until aliasesBnArray.length()).joinToString(",") { aliasesBnArray.getString(it) }
+                        } else obj.optString("aliasesBn", "")
+
+                        val aliasesEnArray = obj.optJSONArray("aliasesEn")
+                        val aliasesEn = if (aliasesEnArray != null) {
+                            (0 until aliasesEnArray.length()).joinToString(",") { aliasesEnArray.getString(it) }
+                        } else obj.optString("aliasesEn", "")
+
+                        currentBatch.add(
+                            ProductEntity(
+                                id = obj.getString("id"),
+                                nameBn = obj.getString("nameBn"),
+                                nameEn = obj.optString("nameEn", ""),
+                                aliasesBn = aliasesBn,
+                                aliasesEn = aliasesEn,
+                                categoryId = obj.getString("categoryId"),
+                                defaultUnit = obj.optString("defaultUnit", "কেজি"),
+                                defaultPrice = obj.optDouble("defaultPrice", 0.0),
+                                isCommon = obj.optBoolean("isCommon", false),
+                                isFavorite = false,
+                                usageCount = 0,
+                                lastUsedTimestamp = 0L,
+                                isCustom = false,
+                                ageRestricted = obj.optBoolean("ageRestricted", false)
+                            )
+                        )
+
+                        if (currentBatch.size >= batchSize) {
+                            database.productDao().insertOrUpdateProducts(currentBatch)
+                            currentBatch = mutableListOf()
+                        }
+                    }
+
+                    if (currentBatch.isNotEmpty()) {
+                        database.productDao().insertOrUpdateProducts(currentBatch)
+                    }
+                    Log.d(TAG, "Loaded ${productsArray.length()} products.")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed loading products from assets", e)
+                }
+
+                // 3. Load Templates
+                try {
+                    val templatesCount = database.templateDao().getTemplateCount()
+                    if (templatesCount == 0 || forceReload) {
+                        val templatesJsonStr = context.assets.open("catalog/templates.json").bufferedReader().use { it.readText() }
+                        val templatesArray = JSONArray(templatesJsonStr)
+                        val templateEntities = mutableListOf<TemplateEntity>()
+                        val templateItemEntities = mutableListOf<TemplateItemEntity>()
+
+                        for (i in 0 until templatesArray.length()) {
+                            val obj = templatesArray.getJSONObject(i)
+                            val templateId = obj.getString("id")
+                            val template = TemplateEntity(
+                                id = templateId,
+                                titleBn = obj.getString("titleBn"),
+                                titleEn = obj.optString("titleEn", ""),
+                                icon = obj.optString("icon", "shopping_cart"),
+                                category = obj.optString("category", "PERSONAL"),
+                                descriptionBn = obj.optString("descriptionBn", ""),
+                                descriptionEn = obj.optString("descriptionEn", ""),
+                                isCustom = false
+                            )
+                            templateEntities.add(template)
+
+                            val itemsArray = obj.getJSONArray("items")
+                            for (j in 0 until itemsArray.length()) {
+                                val itemObj = itemsArray.getJSONObject(j)
+                                templateItemEntities.add(
+                                    TemplateItemEntity(
+                                        templateId = templateId,
+                                        productId = itemObj.optString("productId", ""),
+                                        nameBn = itemObj.getString("nameBn"),
+                                        nameEn = itemObj.optString("nameEn", ""),
+                                        quantity = itemObj.optString("quantity", "১"),
+                                        unit = itemObj.optString("unit", "কেজি"),
+                                        defaultPrice = itemObj.optDouble("defaultPrice", 0.0),
+                                        categoryId = "rice_grains",
+                                        categoryBn = "মুদি",
+                                        sortOrder = j
+                                    )
+                                )
+                            }
+                        }
+                        database.templateDao().insertTemplates(templateEntities)
+                        database.templateDao().insertTemplateItems(templateItemEntities)
+                        Log.d(TAG, "Loaded ${templateEntities.size} templates.")
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed loading templates from assets", e)
+                }
+
+            } catch (e: Exception) {
+                Log.e(TAG, "Unexpected error in loadCatalogIfNeeded", e)
+            }
         }
     }
 
