@@ -1,4 +1,4 @@
-name: Build Android APK & AAB
+name: Build Android APK
 
 on:
   push:
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   build:
-    name: Build & Package APK / AAB
+    name: Build & Package APK
     runs-on: ubuntu-latest
 
     steps:
@@ -62,9 +62,9 @@ jobs:
         run: |
           yes | sdkmanager --licenses || true
 
-      - name: Build Debug & Release APK and AAB
+      - name: Build Debug & Release APK
         run: |
-          ./gradlew :app:assembleDebug :app:assembleRelease :app:bundleRelease \
+          ./gradlew :app:assembleDebug :app:assembleRelease \
             -x test \
             -x lint \
             -x lintVitalRelease \
@@ -82,19 +82,14 @@ jobs:
           if compgen -G "app/build/outputs/apk/release/*.apk" > /dev/null; then
             cp app/build/outputs/apk/release/*.apk build-artifacts/Bazari-Release.apk
           fi
-          
-          # Copy AAB Bundle
-          if compgen -G "app/build/outputs/bundle/release/*.aab" > /dev/null; then
-            cp app/build/outputs/bundle/release/*.aab build-artifacts/Bazari-Release.aab
-          fi
 
           echo "Available outputs in build-artifacts:"
           ls -la build-artifacts/
 
-      - name: Upload All Build Artifacts (APK & AAB)
+      - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Bazari-Android-Builds
+          name: Bazari-APK-Builds
           path: build-artifacts/
           retention-days: 30
 
@@ -105,7 +100,6 @@ jobs:
           files: |
             build-artifacts/Bazari-Release.apk
             build-artifacts/Bazari-Debug.apk
-            build-artifacts/Bazari-Release.aab
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
