@@ -36,10 +36,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- Google AdMob Application ID -->
+        <!-- Google AdMob Application ID (Sample App ID to prevent crash if unverified) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4405011631511984~1721270572" />
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
 
 </manifest>
