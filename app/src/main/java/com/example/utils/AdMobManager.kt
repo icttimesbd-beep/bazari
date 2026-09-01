@@ -26,12 +26,16 @@ object AdMobManager {
     fun initialize(context: Context) {
         if (isInitialized) return
         try {
-            MobileAds.initialize(context) { initializationStatus ->
+            MobileAds.initialize(context.applicationContext) { initializationStatus ->
                 isInitialized = true
                 Log.d(TAG, "AdMob SDK initialized successfully: $initializationStatus")
-                loadInterstitialAd(context)
+                try {
+                    loadInterstitialAd(context.applicationContext)
+                } catch (e: Throwable) {
+                    Log.e(TAG, "Error loading interstitial ad", e)
+                }
             }
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             Log.e(TAG, "Failed to initialize AdMob SDK", e)
         }
     }
@@ -40,44 +44,56 @@ object AdMobManager {
         if (isAdLoading || interstitialAd != null) return
         isAdLoading = true
 
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(
-            context,
-            adUnitId,
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(ad: InterstitialAd) {
-                    interstitialAd = ad
-                    isAdLoading = false
-                    Log.d(TAG, "Interstitial ad loaded.")
-                }
+        try {
+            val adRequest = AdRequest.Builder().build()
+            InterstitialAd.load(
+                context.applicationContext,
+                adUnitId,
+                adRequest,
+                object : InterstitialAdLoadCallback() {
+                    override fun onAdLoaded(ad: InterstitialAd) {
+                        interstitialAd = ad
+                        isAdLoading = false
+                        Log.d(TAG, "Interstitial ad loaded.")
+                    }
 
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    interstitialAd = null
-                    isAdLoading = false
-                    Log.w(TAG, "Interstitial ad failed to load: ${error.message}")
+                    override fun onAdFailedToLoad(error: LoadAdError) {
+                        interstitialAd = null
+                        isAdLoading = false
+                        Log.w(TAG, "Interstitial ad failed to load: ${error.message}")
+                    }
                 }
-            }
-        )
+            )
+        } catch (e: Throwable) {
+            interstitialAd = null
+            isAdLoading = false
+            Log.e(TAG, "Exception during InterstitialAd.load", e)
+        }
     }
 
     fun showInterstitialAd(activity: Activity, onAdDismissed: () -> Unit = {}) {
         val currentAd = interstitialAd
         if (currentAd != null) {
-            currentAd.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    interstitialAd = null
-                    loadInterstitialAd(activity)
-                    onAdDismissed()
-                }
+            try {
+                currentAd.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        interstitialAd = null
+                        loadInterstitialAd(activity)
+                        onAdDismissed()
+                    }
 
-                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                    interstitialAd = null
-                    loadInterstitialAd(activity)
-                    onAdDismissed()
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                        interstitialAd = null
+                        loadInterstitialAd(activity)
+                        onAdDismissed()
+                    }
                 }
+                currentAd.show(activity)
+            } catch (e: Throwable) {
+                Log.e(TAG, "Exception showing interstitial ad", e)
+                interstitialAd = null
+                onAdDismissed()
             }
-            currentAd.show(activity)
         } else {
             // If ad not ready, proceed smoothly without blocking the user
             loadInterstitialAd(activity)

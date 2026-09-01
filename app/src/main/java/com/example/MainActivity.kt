@@ -17,9 +17,24 @@ import com.example.utils.LanguageManager
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LanguageManager.init(this)
-        AdMobManager.initialize(this)
-        enableEdgeToEdge()
+        try {
+            LanguageManager.init(applicationContext)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+
+        try {
+            AdMobManager.initialize(applicationContext)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+
+        try {
+            enableEdgeToEdge()
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+
         setContent {
             BazariTheme {
                 Surface(

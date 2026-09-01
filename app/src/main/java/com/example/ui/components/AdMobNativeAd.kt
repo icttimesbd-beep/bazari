@@ -53,28 +53,35 @@ fun AdMobNativeAd(
     val onSurfaceVariantColor = MaterialTheme.colorScheme.onSurfaceVariant.toArgb()
 
     DisposableEffect(adUnitId) {
-        val adLoader = AdLoader.Builder(context, adUnitId)
-            .forNativeAd { ad ->
-                nativeAd?.destroy()
-                nativeAd = ad
-                isFailed = false
-            }
-            .withAdListener(object : AdListener() {
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    isFailed = true
+        try {
+            val adLoader = AdLoader.Builder(context, adUnitId)
+                .forNativeAd { ad ->
+                    nativeAd?.destroy()
+                    nativeAd = ad
+                    isFailed = false
                 }
-            })
-            .withNativeAdOptions(
-                NativeAdOptions.Builder()
-                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                    .build()
-            )
-            .build()
+                .withAdListener(object : AdListener() {
+                    override fun onAdFailedToLoad(error: LoadAdError) {
+                        isFailed = true
+                    }
+                })
+                .withNativeAdOptions(
+                    NativeAdOptions.Builder()
+                        .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                        .build()
+                )
+                .build()
 
-        adLoader.loadAd(AdRequest.Builder().build())
+            adLoader.loadAd(AdRequest.Builder().build())
+        } catch (e: Throwable) {
+            isFailed = true
+        }
 
         onDispose {
-            nativeAd?.destroy()
+            try {
+                nativeAd?.destroy()
+            } catch (e: Throwable) {
+            }
         }
     }
 

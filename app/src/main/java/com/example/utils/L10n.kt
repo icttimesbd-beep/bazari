@@ -8,7 +8,7 @@ import java.util.Locale
 
 object L10n {
 
-    fun appName(lang: AppLanguage): String = if (lang == AppLanguage.BN) "বাজারি" else "Bazari"
+    fun appName(lang: AppLanguage): String = "Bazari"
 
     fun appTagline(lang: AppLanguage): String =
         if (lang == AppLanguage.BN) "বাজার সহজ, ফর্দ আরও সহজ।" else "Shopping made easy, lists made smarter."
