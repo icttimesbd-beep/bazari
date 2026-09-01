@@ -36,17 +36,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- Google AdMob Application ID -->
+        <!-- Google AdMob Application ID (Sample App ID to prevent crash if unverified) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4405011631511984~1721270572" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true" />
-        <meta-data
-            android:name="com.google.android.gms.ads.flag.OPTIMIZE_SPEND"
-            android:value="true" />
-    </application>
-
+ 
 </manifest>
